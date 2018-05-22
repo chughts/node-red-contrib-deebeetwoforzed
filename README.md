@@ -1,6 +1,8 @@
 # node-red-contrib-deebeetwoforzed
 
-This node allows for SQL based queries against a Z DB/2 database. This node is a simplification of the DashDB node, which should also work, but for some as yet undetermined reason doesn't.
+This node allows for SQL based queries against a Z Db/2 database. This node is a simplification of the DashDB node, which should also work, but for some as yet undetermined reason doesn't.
+This node has been developed and tested to allow access to Db2 databases on Z, but as it is a
+simplification of the dashdb node it may also work with Db2 databases on other systems.
 
 ## Install
 **Please Note:** You must be on Node.js V 6 or higher. If you install the dependencies for this node at a lower version, then you will need to remove the dependencies, and rebuild when you are at the right version level.
