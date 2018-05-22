@@ -1,0 +1,92 @@
+<!--
+  Copyright 2017 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<script type="text/x-red" data-template-name="db2z">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-connection"><i class="fa fa-folder-close"></i> Database Connection</label>
+      <select id="node-input-connection" style="width:68%;">
+      </select>
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-query"><i class="fa fa-briefcase"></i> Query</label>
+      <textarea style="width:70%; height:75px" id="node-input-query">Type your SQL query here</textarea>
+  </div>
+
+  <div class="form-row">
+      <label for="node-input-params"><i class="fa fa-briefcase"></i> Parameter Markers (optional)</label>
+      <input type="text" id="node-input-params" placeholder="params">
+  </div>
+
+</script>
+
+<script type="text/x-red" data-help-name="db2z">
+  <p>This node allows for SQL based queries against a Z DB/2 database.
+  </p>
+  <p>The query to run is defined in the node configuration along with any
+  parameters that the query needs. Provide the parameters as a comma separted
+  list.</p>
+  <p>If a string is provided as input in <code>msg.payload</code> then this will
+  interpreted as the query to run.</p>
+  <p>If no query is provided then the node returns a list of the available
+  tables for the configured creator.</p>
+  <p>The response from the query is returned in <code>msg.payload</code></p>
+  <p>The query parameters can be overridden by <code>msg.queryparams</code> to a
+  comma separated string containing all the required parameters.</p>
+
+</script>
+
+<style type="text/css">
+  .node_label_white {
+    fill: white;
+  }
+
+  #palette_node_db2z>div.palette_label {
+    color: white;
+  }
+</style>
+
+<script type="text/javascript">
+  (function() {
+    RED.nodes.registerType('db2z', {
+      category: 'storage',
+      defaults: {
+        name: { value: '' },
+        connection: { value:"", type:"db2z-config" },
+        query: { value: "", required: false },
+        params: { value: "", required: false }
+      },
+      credentials: {
+      },
+      color: 'rgb(140,50,50)',
+      inputs: 1,
+      outputs: 1,
+      paletteLabel: 'Db2/Z',
+      icon: 'file.png',
+      label: function() {
+        return this.name || 'Db2/Z';
+      },
+      labelStyle: function() {
+        return this.name ? 'node_label_italic node_label_white' : 'node_label_white';
+      }
+    });
+  })();
+</script>
